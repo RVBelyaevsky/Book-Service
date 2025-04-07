@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 
-from booksroom.models import Books, Author
+from booksroom.models import Books, Author, Booking
 
 
 class BooksSerializer(ModelSerializer):
@@ -12,4 +12,10 @@ class BooksSerializer(ModelSerializer):
 class AuthorSerializer(ModelSerializer):
     class Meta:
         model = Author
+        fields = '__all__'
+
+
+class BookingSerializer(ModelSerializer):
+    class Meta:
+        model = Booking
         fields = '__all__'

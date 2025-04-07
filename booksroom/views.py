@@ -1,7 +1,7 @@
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView
 
-from booksroom.models import Books, Author
-from booksroom.serializers import BooksSerializer, AuthorSerializer
+from booksroom.models import Books, Author, Booking
+from booksroom.serializers import BooksSerializer, AuthorSerializer, BookingSerializer
 
 
 class BooksListApiView(ListAPIView):
@@ -52,3 +52,13 @@ class AuthorDestroyApiView(DestroyAPIView):
 class AuthorUpdateApiView(UpdateAPIView):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
+
+
+class BookingListApiView(ListAPIView):
+    queryset = Booking.objects.all()
+    serializer_class = BookingSerializer
+
+
+class BookingCreateApiView(CreateAPIView):
+    queryset = Booking.objects.all()
+    serializer_class = BookingSerializer
