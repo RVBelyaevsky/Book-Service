@@ -1,13 +1,22 @@
-from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView
+from rest_framework.generics import (
+    CreateAPIView,
+    ListAPIView,
+    RetrieveAPIView,
+    UpdateAPIView,
+    DestroyAPIView,
+)
 
 from booksroom.models import Books, Author, Booking
 from booksroom.permissions import Moderator
 from booksroom.serializers import BooksSerializer, AuthorSerializer, BookingSerializer
 
+from rest_framework.permissions import AllowAny
+
 
 class BooksListApiView(ListAPIView):
     queryset = Books.objects.all()
     serializer_class = BooksSerializer
+    permission_classes = [AllowAny]
 
 
 class BooksRetrieveApiView(RetrieveAPIView):

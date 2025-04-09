@@ -6,13 +6,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('booksroom', '0001_initial'),
+        ("booksroom", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='books',
-            name='is_availability',
-            field=models.BooleanField(default=True, verbose_name='наличие в библиотеке'),
+            model_name="books",
+            name="is_availability",
+            field=models.BooleanField(
+                default=True, verbose_name="наличие в библиотеке"
+            ),
         ),
     ]

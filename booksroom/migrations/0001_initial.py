@@ -8,33 +8,86 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Author',
+            name="Author",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50, verbose_name='автор книги')),
-                ('country', models.CharField(blank=True, max_length=100, null=True, verbose_name='страна автора')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=50, verbose_name="автор книги")),
+                (
+                    "country",
+                    models.CharField(
+                        blank=True,
+                        max_length=100,
+                        null=True,
+                        verbose_name="страна автора",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Автор',
-                'verbose_name_plural': 'Авторы',
+                "verbose_name": "Автор",
+                "verbose_name_plural": "Авторы",
             },
         ),
         migrations.CreateModel(
-            name='Books',
+            name="Books",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=50, verbose_name='название книги')),
-                ('genre', models.CharField(choices=[('Action', 'Экшен'), ('Adventure', 'Приключения'), ('Comedy', 'Юмор'), ('Crime ', 'Детективы'), ('Fantasy', 'Фэнтэзи'), ('Historical', 'Исторический'), ('Horror', 'Ужасы'), ('Romance', 'Любовные романы'), ('Satire ', 'Сатира'), ('Science', 'Научные'), ('Other', 'Другое')], default='Other', max_length=50, verbose_name='жанр')),
-                ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='booksroom.author', verbose_name='автор книги')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "title",
+                    models.CharField(max_length=50, verbose_name="название книги"),
+                ),
+                (
+                    "genre",
+                    models.CharField(
+                        choices=[
+                            ("Action", "Экшен"),
+                            ("Adventure", "Приключения"),
+                            ("Comedy", "Юмор"),
+                            ("Crime ", "Детективы"),
+                            ("Fantasy", "Фэнтэзи"),
+                            ("Historical", "Исторический"),
+                            ("Horror", "Ужасы"),
+                            ("Romance", "Любовные романы"),
+                            ("Satire ", "Сатира"),
+                            ("Science", "Научные"),
+                            ("Other", "Другое"),
+                        ],
+                        default="Other",
+                        max_length=50,
+                        verbose_name="жанр",
+                    ),
+                ),
+                (
+                    "author",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="booksroom.author",
+                        verbose_name="автор книги",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Книга',
-                'verbose_name_plural': 'Книги',
+                "verbose_name": "Книга",
+                "verbose_name_plural": "Книги",
             },
         ),
     ]

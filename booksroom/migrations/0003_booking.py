@@ -9,23 +9,58 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('booksroom', '0002_books_is_availability'),
+        ("booksroom", "0002_books_is_availability"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Booking',
+            name="Booking",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('operation', models.CharField(choices=[('issuance', 'выдача'), ('return', 'возврат')], default='issuance', max_length=25, verbose_name='действие')),
-                ('booking_date', models.DateField(default=datetime.date.today, verbose_name='дата операции')),
-                ('book', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='booksroom.books', verbose_name='книга')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to=settings.AUTH_USER_MODEL, verbose_name='читатель')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "operation",
+                    models.CharField(
+                        choices=[("issuance", "выдача"), ("return", "возврат")],
+                        default="issuance",
+                        max_length=25,
+                        verbose_name="действие",
+                    ),
+                ),
+                (
+                    "booking_date",
+                    models.DateField(
+                        default=datetime.date.today, verbose_name="дата операции"
+                    ),
+                ),
+                (
+                    "book",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="booksroom.books",
+                        verbose_name="книга",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="читатель",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'действие над книгой',
-                'verbose_name_plural': 'действия над книгами',
+                "verbose_name": "действие над книгой",
+                "verbose_name_plural": "действия над книгами",
             },
         ),
     ]

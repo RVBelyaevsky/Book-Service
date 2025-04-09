@@ -2,12 +2,12 @@ from datetime import date
 from django.db import models
 from config import settings
 
-NULLABLE = {'blank': True, 'null': True}
+NULLABLE = {"blank": True, "null": True}
 
 
 class Author(models.Model):
-    name = models.CharField(max_length=50, verbose_name='автор книги')
-    country = models.CharField(max_length=100, verbose_name='страна автора', **NULLABLE)
+    name = models.CharField(max_length=50, verbose_name="автор книги")
+    country = models.CharField(max_length=100, verbose_name="страна автора", **NULLABLE)
 
     def __str__(self):
         return self.name
@@ -29,13 +29,19 @@ class Books(models.Model):
         ("Romance", "Любовные романы"),
         ("Satire ", "Сатира"),
         ("Science", "Научные"),
-        ("Other", "Другое")
+        ("Other", "Другое"),
     ]
 
-    title = models.CharField(max_length=50, verbose_name='название книги')
-    genre = models.CharField(max_length=50, choices=GENRE, verbose_name="жанр", default="Other")
-    author = models.ForeignKey(Author, on_delete=models.CASCADE, verbose_name='автор книги')
-    is_availability = models.BooleanField(verbose_name='наличие в библиотеке', default=True)
+    title = models.CharField(max_length=50, verbose_name="название книги")
+    genre = models.CharField(
+        max_length=50, choices=GENRE, verbose_name="жанр", default="Other"
+    )
+    author = models.ForeignKey(
+        Author, on_delete=models.CASCADE, verbose_name="автор книги"
+    )
+    is_availability = models.BooleanField(
+        verbose_name="наличие в библиотеке", default=True
+    )
 
     def __str__(self):
         return self.title
@@ -46,18 +52,19 @@ class Books(models.Model):
 
 
 class Booking(models.Model):
-    OPERATION = [
-        ('issuance', 'выдача'),
-        ('return', 'возврат')
-    ]
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, verbose_name='читатель')
+    OPERATION = [("issuance", "выдача"), ("return", "возврат")]
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.PROTECT, verbose_name="читатель"
+    )
     book = models.ForeignKey(Books, on_delete=models.PROTECT, verbose_name="книга")
-    operation = models.CharField(max_length=25, choices=OPERATION, verbose_name='действие', default='issuance')
-    booking_date = models.DateField(verbose_name='дата операции', default=date.today)
+    operation = models.CharField(
+        max_length=25, choices=OPERATION, verbose_name="действие", default="issuance"
+    )
+    booking_date = models.DateField(verbose_name="дата операции", default=date.today)
 
     def __str__(self):
         return f"Читатель {self.user} {self.operation} книгу {self.book}"
 
     class Meta:
-        verbose_name = 'действие над книгой'
-        verbose_name_plural = 'действия над книгами'
+        verbose_name = "действие над книгой"
+        verbose_name_plural = "действия над книгами"
