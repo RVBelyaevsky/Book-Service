@@ -2,9 +2,9 @@ services:
   db:
     image: postgres:16.0
     env_file:
-      - .env
-    ports:
-      - "5432:5432"
+      - ./.env
+    expose:
+      - "5432"
     volumes:
       - pg_data:/var/lib/postgresql/data/
 
@@ -12,11 +12,13 @@ services:
     build: .
     ports:
       - "8000:8000"
-    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0.8000"
+    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     depends_on:
       - db
     env_file:
-      - .env
+      - ./.env
+    volumes:
+      - .:/app
 
 volumes:
   pg_data:
